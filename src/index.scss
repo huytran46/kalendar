@@ -1,0 +1,43 @@
+:root {
+    --gutter: 8px;
+    --radius: 4px;
+    --primary-500: #53698d;
+    --primary-500-rgb: 83 105 141;
+    --primary-500-contrast: #ffffff;
+    --primary-300: #a1acb6;
+    --primary-300-rgb: 161 172 182;
+    --primary-100: #f4f6f9;
+    --primary-100-rgb: 244 246 249;
+    --primary: var(--primary-500);
+    --primary-contrast: var(--primary-500-contrast); 
+}
+
+
+@function spacing($multiplier) {
+    $gutter: 8;
+    $result: $gutter * $multiplier * 1px;
+    @return $result;
+}
+
+
+
+body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    color: var(--primary);
+    font-family: 'Lato', system-ui;
+    width: 100%;
+    min-height: 100vh;
+
+    #app {
+        width: 100%;
+        height: 100%;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+}

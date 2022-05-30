@@ -1,0 +1,32 @@
+{
+  "name": "kalendar",
+  "version": "1.0.0",
+  "description": "",
+  "source": "src/index.tsx",
+  "module": "dist/index.js",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "scripts": {
+    "start": "concurrently \"yarn db\" \"yarn fe\"",
+    "fe": "parcel public/index.html",
+    "db": "json-server -p 4000 --watch src/mock/db.json",
+    "build": "parcel build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "2.6.0",
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.5",
+    "parcel": "^2.6.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "concurrently": "^7.2.1",
+    "global": "^4.4.0",
+    "json-server": "^0.17.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  }
+}
