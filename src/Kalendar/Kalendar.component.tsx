@@ -1,59 +1,42 @@
 import React from "react";
-
+import FifteenMinutesRow from "./components/FifteenMinutesRow";
+import HeaderRow from "./components/HeaderRow";
+import KalendarVirtualMap from "./KalendarVirtualMap.component";
 import "./Kalendar.scss";
 
-interface IRowProps {
-  hour: number;
-  minute?: number;
-}
+const Kalendar: React.FC = () => {
+  function renderSchedule() {
+    const fifteenMinutesRows: JSX.Element[] = [];
+    for (let hour = 9; hour < 19; hour++) {
+      for (let i = 0; i < 60; i += 15) {
+        fifteenMinutesRows.push(
+          <FifteenMinutesRow hour={hour} minute={i === 0 ? undefined : i} />
+        );
+      }
+    }
+    return fifteenMinutesRows;
+  }
 
-const Row: React.FC<IRowProps> = (props) => {
-  return (
-    <>
-      <span
-        className={`kalendar-block kalendar-block__time ${
-          props.minute ? "kalendar-block__minute" : ""
-        }`}
-      >
-        {props.minute ? (
-          <>
-            {props.hour}:{props.minute ?? "00"}&nbsp;PM
-          </>
-        ) : (
-          <b>
-            {props.hour}:{props.minute ?? "00"}&nbsp;PM
-          </b>
-        )}
-      </span>
-      <span className="kalendar-block"></span>
-      <span className="kalendar-block"></span>
-      <span className="kalendar-block"></span>
-      <span className="kalendar-block"></span>
-      <span className="kalendar-block"></span>
-      <span className="kalendar-block"></span>
-      <span className="kalendar-block"></span>
-    </>
-  );
-};
+  const numberOfRows = renderSchedule().length + 1;
+  const numberOfColumns = 7 + 1;
 
-const Kalendar: React.FC<{}> = () => {
   return (
-    <div className="kalendar">
+    <div
+      className="kalendar"
+      style={{
+        gridTemplateColumns: `repeat(${numberOfColumns}, 240px)`,
+        gridTemplateRows: `repeat(${numberOfRows}, 80px)`,
+      }}
+    >
       {/* HEADER */}
-      <span className="kalendar-block kalendar-block__blank"></span>
-      <span className="kalendar-block kalendar-block__date">Sunday</span>
-      <span className="kalendar-block kalendar-block__date">Monday</span>
-      <span className="kalendar-block kalendar-block__date">Tuesday</span>
-      <span className="kalendar-block kalendar-block__date">Wednesday</span>
-      <span className="kalendar-block kalendar-block__date">Thursday</span>
-      <span className="kalendar-block kalendar-block__date">Friday</span>
-      <span className="kalendar-block kalendar-block__date">Saturday</span>
+      <HeaderRow />
 
       {/* BODY */}
-      <Row hour={5} />
-      <Row hour={5} minute={15} />
-      <Row hour={6} />
-      <Row hour={7} />
+      {renderSchedule()}
+      <KalendarVirtualMap
+        gridTemplateColumns={`repeat(${numberOfColumns}, 240px)`}
+        gridTemplateRows={`repeat(${numberOfRows}, 80px)`}
+      />
     </div>
   );
 };

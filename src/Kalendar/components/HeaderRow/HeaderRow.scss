@@ -1,0 +1,21 @@
+@import "../../../index.scss";
+
+.kalendar-block {
+    &__header {
+        display: grid;
+        place-items: center;
+        padding-top: spacing(2);
+        padding-bottom: spacing(2);
+        background-color: var(--primary-100);
+    }
+
+    &__blank {
+        background-color: var(--primary-contrast);
+        border-bottom-width: 0px;
+    }
+
+    &__date {
+        display: grid;
+        place-items: center;
+    }
+}
