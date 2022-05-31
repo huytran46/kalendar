@@ -1,0 +1,28 @@
+@import "../../../../index.scss";
+
+.kalendar-block {
+    &__header {
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: spacing(2) 0px;
+        background-color: var(--primary-100);
+        border-top: 1px solid var(--primary-300);
+    }
+
+    &__blank {
+        background-color: var(--primary-contrast);
+        border-bottom-width: 0px;
+    }
+}
+
+.kalendar-block-header {
+    &-date {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--primary);
+    }
+    &-weekday {
+        color: var(--primary);
+    }
+}

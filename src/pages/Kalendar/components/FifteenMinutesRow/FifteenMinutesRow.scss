@@ -1,0 +1,20 @@
+@import '../../../../index.scss';
+
+$columns: 8;
+$rows: 8;
+$column-width: spacing(30);
+$row-height: spacing(10);
+
+.kalendar-block {
+  &__time {
+    display: grid;
+    place-items: center;
+    align-items: flex-end;
+    padding-bottom: 0px;
+    border-bottom-width: 0px !important;
+  }
+
+  &__minute {
+    font-size: 0.8rem;
+  }
+}

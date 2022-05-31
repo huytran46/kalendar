@@ -8,3 +8,34 @@
     overflow: scroll;
     padding-bottom: spacing(2);
 }
+
+.kalendar-breadcumb {
+    display: flex;
+    align-items: center;
+    height: spacing(10);
+    &-item {
+        margin: spacing(1);
+        text-decoration: none;
+
+        &-icon {
+            margin-right: spacing(1);
+        }
+
+        &-text {
+            color: var(--primary);
+        }
+
+        &__active {
+            font-weight: bold;
+            .kalendar-breadcumb-item-text {
+                text-decoration: underline;
+            }
+        }
+
+        &:hover {
+            .kalendar-breadcumb-item-text {
+                text-decoration: underline;
+            }
+        }
+    }
+}
