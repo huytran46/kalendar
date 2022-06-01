@@ -1,22 +1,28 @@
 {
-  "employees": [
+  "staffs": [
     {
       "id": 1,
-      "first_name": "Sebastian",
-      "last_name": "Eschweiler",
-      "email": "sebastian@codingthesmartway.com"
+      "first_name": "Quoc",
+      "last_name": "Hyu",
+      "email": "quoc_hyu@developer.skedulo.com",
+      "available_events": 1
     },
     {
       "id": 2,
-      "first_name": "Steve",
-      "last_name": "Palmer",
-      "email": "steve@codingthesmartway.com"
-    },
+      "first_name": "Tran",
+      "last_name": "Huy",
+      "email": "huy_tran@developer.skedulo.com",
+      "available_events": 0
+    }
+  ],
+  "events": [
     {
-      "id": 3,
-      "first_name": "Ann",
-      "last_name": "Smith",
-      "email": "ann@codingthesmartway.com"
+      "id": 1654091425112,
+      "name": "Block that expands 2 days",
+      "hex_color": "#fecb3e",
+      "staff_id": 1,
+      "start_at": 1654224600,
+      "end_at": 1654314600
     }
   ]
 }

@@ -1,10 +1,11 @@
-@import '../../../index.scss';
-
-$row-height: spacing(10);
+$row-height: spacing(2);
 
 .kalendar-block {
     min-height: $row-height;
     background-color: var(--primary-contrast);
     border-bottom: 1px solid var(--primary-300);
     border-right: 1px solid var(--primary-300);
+    &__last {
+        border-bottom-width: 0px;
+    }
 }

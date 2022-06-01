@@ -4,33 +4,6 @@ import NumberUtil from "../shared/lib/number";
 
 const MINUTES_PER_HOUR = 60;
 
-function parseTimeDigitToTime(
-  _timedigit: number,
-  startWorkingTime = 900,
-  endWorkingTime = 1800
-): string {
-  if (_timedigit > endWorkingTime) return "18:00";
-  if (_timedigit <= startWorkingTime) return "09:00";
-
-  // extract
-  let _hour = Math.floor(_timedigit / 100);
-  let _minute = Math.round(_timedigit % 100);
-
-  // auto heal
-  _minute = Math.max(0, Math.min(59, _minute));
-  _hour = Math.max(0, Math.min(24, _hour));
-
-  // auto append zero if needed
-  const _hourStr = _hour < 10 ? `0${_hour}` : `${_hour}`;
-  const _minuteStr = _minute < 10 ? `0${_minute}` : `${_minute}`;
-
-  return `${_hourStr}:${_minuteStr}`;
-}
-
-function isValidDateStringFormat(inputDate: string): boolean {
-  return /^[0-9]{4}\-[0-9]{2}\-[0-9]{2}\s[0-9]{2}\:[0-9]{2}$/g.test(inputDate);
-}
-
 function _parseTimeToGridRow(
   _hour: number,
   _minute: number,
@@ -54,6 +27,20 @@ function _parseTimeToGridRow(
   const _minuteRowIndex =
     (_minute - (_minute % _minutesPerRow)) / _minutesPerRow;
 
+  // console.log("=============================================");
+
+  // console.log("_minute:", _minute);
+
+  // console.log("_minuteRowIndex:", _minuteRowIndex);
+
+  // const isRare = _minute % _minutesPerRow === 0;
+
+  // console.log("isRare:", isRare);
+
+  // console.log("reult:", _hourRowIndex + _minuteRowIndex + 1);
+
+  // console.log("=============================================");
+
   return _hourRowIndex + _minuteRowIndex + 1;
 }
 
@@ -61,23 +48,31 @@ function _parseDateToGridColumn(
   _date: dayjs.Dayjs,
   originDate: dayjs.Dayjs,
   daysPerColumn: number,
+  isEndColumn: boolean,
   maxShowDates = 7
 ): number {
-  const dayOffset = originDate.diff(_date, "day");
+  const startDate = _date.startOf("date");
+  const startOriginDate = originDate.startOf("date");
+  const dayOffset = startDate.diff(startOriginDate, "days");
 
   if (dayOffset < 0 || dayOffset > maxShowDates) {
     return 0;
   }
 
-  const _columnIndex = dayOffset * daysPerColumn + 1; // 1 for itself
+  let _columnIndex = dayOffset * daysPerColumn + 1; // 1 for itself
+
+  if (isEndColumn) {
+    _columnIndex += 1;
+  }
 
   return _columnIndex;
 }
 
 function parseUnixEpochToGridCoordinates(
   unix: number,
+  isEndColumn = false,
   originHour = 9,
-  minutesPerRow = 15,
+  minutesPerRow = 1,
   originDateObj = DayUtil.getToday(),
   daysPerColumn = 1,
   maxShowDates = 7
@@ -95,6 +90,7 @@ function parseUnixEpochToGridCoordinates(
     _dateObj,
     originDateObj,
     daysPerColumn,
+    isEndColumn,
     maxShowDates
   );
 
@@ -105,7 +101,5 @@ function parseUnixEpochToGridCoordinates(
 }
 
 export default {
-  parseTimeDigitToTime,
-  isValidDateStringFormat,
   parseUnixEpochToGridCoordinates,
 };

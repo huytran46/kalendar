@@ -1,5 +1,3 @@
-@import "../../../../index.scss";
-
 .kalendar-block {
     &__header {
         display: grid;
@@ -8,6 +6,17 @@
         padding: spacing(2) 0px;
         background-color: var(--primary-100);
         border-top: 1px solid var(--primary-300);
+        &--today {
+            background-color: var(--primary);
+    
+            .kalendar-block-header-date {
+                color: var(--primary-contrast);
+            }
+            
+            .kalendar-block-header-weekday {
+                color: var(--primary-contrast);
+            }
+        }
     }
 
     &__blank {
@@ -22,6 +31,7 @@
         font-weight: bold;
         color: var(--primary);
     }
+
     &-weekday {
         color: var(--primary);
     }

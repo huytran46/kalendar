@@ -5,6 +5,7 @@ import "./KalendarEvent.scss";
 interface IEventBlockProps extends CSSProperties, IGridCoordinate {
   label: string;
   eventHexColor: string;
+  timeString: string;
 }
 
 const ROW_OFFSET = 2;
@@ -15,6 +16,7 @@ const KalendarEvent: React.FC<IEventBlockProps> = ({
   column,
   eventHexColor,
   label,
+  timeString,
   ...style
 }) => {
   return (
@@ -25,12 +27,14 @@ const KalendarEvent: React.FC<IEventBlockProps> = ({
         gridArea: `${row[0] + ROW_OFFSET}/${column[0] + COL_OFFSET}/${
           row[1] + ROW_OFFSET
         }/${column[1] + COL_OFFSET}`,
-        color: `${eventHexColor}`,
+        color: "black",
         outlineColor: eventHexColor,
-        backgroundColor: `${eventHexColor}4E`,
+        backgroundColor: `${eventHexColor}6E`,
       }}
     >
-      {label}
+      <small style={{ width: "100%" }}>
+        {label}&nbsp;({timeString})
+      </small>
     </span>
   );
 };

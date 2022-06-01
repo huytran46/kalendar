@@ -1,11 +1,9 @@
-
 @import './index.scss';
 
 .kalendar-container {
     display: block;
     width: 100%;
     height: 100%;
-    overflow: scroll;
     padding-bottom: spacing(2);
 }
 
@@ -38,4 +36,10 @@
             }
         }
     }
+}
+
+.kalendar-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

@@ -1,10 +1,11 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 import Block from "../../../../shared/components/Block";
 import { TWorkingDay } from "../../../../shared/model/Calendar";
 
-import "./HeaderRow.scss";
+import "./KalendarHeaderRow.scss";
 
-interface IHeaderRowProps {
+interface IKalendarHeaderRowProps {
   workingDays: TWorkingDay[];
 }
 
@@ -29,12 +30,17 @@ function parseToWeekdayString(weekday: number): string {
   }
 }
 
-const HeaderRow: React.FC<IHeaderRowProps> = (props) => {
+const HeaderRow: React.FC<IKalendarHeaderRowProps> = (props) => {
   return (
     <>
       <Block className="kalendar-block__header kalendar-block__blank" />
       {props.workingDays.map(([weekday, date], idx) => (
-        <Block key={idx} className="kalendar-block__header">
+        <Block
+          key={uuidv4()}
+          className={`kalendar-block__header ${
+            idx === 0 ? "kalendar-block__header--today" : ""
+          }`}
+        >
           <span className="kalendar-block-header-date">{date}</span>
           <span className="kalendar-block-header-weekday">
             {parseToWeekdayString(weekday)}

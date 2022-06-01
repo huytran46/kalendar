@@ -2,12 +2,12 @@
     --gutter: 8px;
     --radius: 4px;
     --primary-500: #53698d;
-    --primary-500-rgb: 83 105 141;
+    --primary-500-rgb: 83,105,141;
     --primary-500-contrast: #ffffff;
     --primary-300: #a1acb6;
-    --primary-300-rgb: 161 172 182;
+    --primary-300-rgb: 161,172,182;
     --primary-100: #f4f6f9;
-    --primary-100-rgb: 244 246 249;
+    --primary-100-rgb: 244,246,249;
     --primary: var(--primary-500);
     --primary-contrast: var(--primary-500-contrast); 
 }
@@ -26,7 +26,7 @@ body {
     margin: 0;
     padding: 0;
     color: var(--primary);
-    font-family: 'Lato', system-ui;
+    font-family: 'Inter', system-ui;
     width: 100%;
     min-height: 100vh;
 
@@ -39,5 +39,37 @@ body {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+    }
+
+    input {
+        padding: spacing(1);
+        color: var(--primary);
+        border: 1px solid var(--primary-300);
+        border-radius: 4px;
+        &::placeholder {
+            color: var(--primary-300);
+        }
+
+        &:focus-visible {
+            outline-color: var(--primary);
+        }
+    }
+
+    button {
+        height: fit-content;
+        width: fit-content;
+        min-height: spacing(4);
+        border-radius: 2px;
+        padding: spacing(0.5);
+        border: 1px solid var(--primary);
+        color: var(--primary);
+        cursor: pointer;
+        font-weight: bold;
+        box-shadow: 2px 2px 4px var(--primary-300);
+
+        &:active {
+            transition: box-shadow 0.3s;
+            box-shadow: none;
+        }
     }
 }
