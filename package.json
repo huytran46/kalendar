@@ -1,6 +1,6 @@
 {
   "name": "kalendar",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "source": "src/index.tsx",
   "browserslist": "> 0.5%, last 2 versions, not dead",
