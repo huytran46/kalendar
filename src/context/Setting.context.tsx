@@ -12,8 +12,10 @@ interface ISettingContext {
 const defaultSetting: ISettingContext = {
   viewingStaffId: null,
   daysToShow: 7,
-  minutesPerRow: 15,
-  rowHeightInPx: 40,
+  // minutesPerRow: 15,
+  // rowHeightInPx: 40,
+  minutesPerRow: 1,
+  rowHeightInPx: 20,
   columnWidthInPx: 240,
   setSetting: () => {
     throw Error("NOT_IMPLEMENTED");

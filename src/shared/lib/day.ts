@@ -38,15 +38,27 @@ function getToday(): dayjs.Dayjs {
   return dayjs();
 }
 
-// TODO: parse unix to hour:minute string
 function parseUnixToHourMinuteString(_unix: number): string {
   return dayjs.unix(_unix).format("HH:mm");
+}
+
+function parseHourMinuteDateToUnix(
+  _hour: number,
+  _minute: number,
+  _date: number
+): number {
+  const _dayJS = dayjs()
+    .set("hour", _hour)
+    .set("minute", _minute)
+    .set("date", _date);
+  return _dayJS.unix();
 }
 
 export default {
   getToday,
   parseUnixToDateTime,
   getNextSevenWorkingDays,
+  parseHourMinuteDateToUnix,
   parseSelectedDateTimeToUnix,
   parseUnixToHourMinuteString,
 };

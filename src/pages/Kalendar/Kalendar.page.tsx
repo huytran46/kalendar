@@ -1,5 +1,8 @@
 import React, { useMemo } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
 import KalendarRow from "./components/KalendarRow";
 import HeaderRow from "./components/KalendarHeaderRow";
 import KalendarRenderLayer from "./KalendarRenderLayer.component";
@@ -33,11 +36,6 @@ function renderScheduleRows(
   }
   return calendarRows;
 }
-
-const virtualGridStyle = {
-  gridTemplateColumns: "160px repeat(7, 240px)",
-  gridTemplateRows: "80px 40px repeat(599, calc(40px / 15))",
-};
 
 const Kalendar: React.FC = () => {
   const settingContext = useGlobalSetting();
@@ -84,7 +82,9 @@ const Kalendar: React.FC = () => {
       {/* BODY */}
       {calendarRows}
 
-      <KalendarRenderLayer {...virtualGridStyle} />
+      <DndProvider backend={HTML5Backend}>
+        <KalendarRenderLayer {...virtualGridStyle} />
+      </DndProvider>
     </div>
   );
 };
