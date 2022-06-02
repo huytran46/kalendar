@@ -14,7 +14,7 @@ const defaultSetting: ISettingContext = {
   daysToShow: 7,
   // minutesPerRow: 15,
   // rowHeightInPx: 40,
-  minutesPerRow: 1,
+  minutesPerRow: 10,
   rowHeightInPx: 20,
   columnWidthInPx: 240,
   setSetting: () => {

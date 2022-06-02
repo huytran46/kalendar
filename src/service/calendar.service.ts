@@ -86,24 +86,56 @@ function parseUnixEpochToGridCoordinates(
   };
 }
 
+// function revertCoordinatesToUnix(
+//   rowIndex: number,
+//   columnIndex: number,
+//   originHour = 9,
+//   minutesPerRow = 1
+// ): number {
+//   const startRowIndx = rowIndex - 1;
+//   const startColIndx = columnIndex - 1;
+//   const _hourMinuteDigit =
+//     originHour * 100 + (startRowIndx - 2) * minutesPerRow;
+//   const _hourDigit = Math.floor(_hourMinuteDigit / 100);
+//   const _minuteDigit = Math.round(_hourMinuteDigit % 100);
+//   const originDate = DayUtil.getToday();
+//   const dateOffset = startColIndx - 1;
+//   const _dateDigit = originDate.startOf("D").add(dateOffset, "day").get("date");
+
+//   console.log(
+//     "_hourMinuteDigit:",
+//     _hourMinuteDigit,
+//     " - _hourDigit:",
+//     _hourDigit,
+//     " - _minuteDigit:",
+//     _minuteDigit,
+//     " - _dateDigit:",
+//     _dateDigit
+//   );
+
+//   return DayUtil.parseHourMinuteDateToUnix(
+//     _hourDigit,
+//     _minuteDigit,
+//     _dateDigit
+//   );
+// }
+
 function revertCoordinatesToUnix(
   rowIndex: number,
   columnIndex: number,
   originHour = 9,
   minutesPerRow = 1
 ): number {
-  const startRowIndx = rowIndex - 1;
+  const rowOffset = rowIndex - 3;
+  const minutesToAdd = rowOffset * minutesPerRow;
   const startColIndx = columnIndex - 1;
-  const _hourMinuteDigit =
-    originHour * 100 + (startRowIndx - 2) * minutesPerRow;
-  const _hourDigit = Math.floor(_hourMinuteDigit / 100);
-  const _minuteDigit = Math.round(_hourMinuteDigit % 100);
   const originDate = DayUtil.getToday();
   const dateOffset = startColIndx - 1;
   const _dateDigit = originDate.startOf("D").add(dateOffset, "day").get("date");
+
   return DayUtil.parseHourMinuteDateToUnix(
-    _hourDigit,
-    _minuteDigit,
+    originHour,
+    minutesToAdd,
     _dateDigit
   );
 }

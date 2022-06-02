@@ -5,7 +5,7 @@
       "first_name": "Quoc",
       "last_name": "Hyu",
       "email": "quoc_hyu@developer.skedulo.com",
-      "available_events": 1
+      "available_events": 2
     },
     {
       "id": 2,
@@ -15,5 +15,22 @@
       "available_events": 0
     }
   ],
-  "events": []
+  "events": [
+    {
+      "id": 1654180773450,
+      "name": "Dev daily stand-up",
+      "hex_color": "#2954ff",
+      "staff_id": 1,
+      "start_at": 1654137013,
+      "end_at": 1654140613
+    },
+    {
+      "id": 1654181234558,
+      "name": "All-hands meeting 🤲🤲🎊",
+      "hex_color": "#f00000",
+      "staff_id": 1,
+      "start_at": 1654315229,
+      "end_at": 1654317029
+    }
+  ]
 }

@@ -65,6 +65,8 @@ const KalendarEvent: React.FC<IEventBlockProps> = observer((props) => {
     onChange,
   } = props;
 
+  const [loading, setLoading] = useState(false);
+
   const _rowStart = useMemo(() => row[0] + ROW_OFFSET, [row]);
 
   const _rowEnd = useMemo(() => row[1] + ROW_OFFSET, [row]);
@@ -103,31 +105,43 @@ const KalendarEvent: React.FC<IEventBlockProps> = observer((props) => {
   useEffect(() => {
     if (!dndManager?.draggableEvent) return;
     if (dndManager?.draggableEvent?.eventId !== props.eventId) return;
-
     // change event's position
     const de = dndManager.draggableEvent;
 
+    // console.log("de.toX:", de.toX);
+
+    // console.log("de.toY:", de.toY);
+
+    const endRow = de.toX + _rowOffset;
+
+    // console.log("_rowOffset:", _rowOffset);
+
+    // console.log("endRow:", endRow);
+
     const startUnix = CalendarService.revertCoordinatesToUnix(de.toX, de.toY);
 
-    const endUnix = CalendarService.revertCoordinatesToUnix(
-      de.toX + _rowOffset,
-      de.toY
-    );
+    // console.log("startUnix:", startUnix);
+
+    const endUnix = CalendarService.revertCoordinatesToUnix(endRow, de.toY);
+
+    // console.log("endUnix:", endUnix);
 
     patchEventInfo(startUnix, endUnix, () => {
-      setGridAreaString(
-        parseGridAreaString(de.toX, de.toY, de.toX + _rowOffset, de.toY)
-      );
+      setGridAreaString(parseGridAreaString(de.toX, de.toY, endRow, de.toY));
     });
+
     dndManager?.resetState();
   }, [dndManager?.draggableEvent, _rowOffset, props.eventId]);
+
+  // console.log("test:", CalendarService.revertCoordinatesToUnix(123, 2));
 
   async function patchEventInfo(
     startUnixTimeStamp: number,
     endUnixTimeStamp: number,
-    successCb: () => void
+    cb: () => void
   ) {
     try {
+      setLoading(true);
       await patchStaffEventApiHook.execute(
         {
           start_at: startUnixTimeStamp,
@@ -136,9 +150,11 @@ const KalendarEvent: React.FC<IEventBlockProps> = observer((props) => {
         `/events/${props.eventId}`
       );
       await onChange();
-      successCb();
+      cb();
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   }
   return (
@@ -163,7 +179,13 @@ const KalendarEvent: React.FC<IEventBlockProps> = observer((props) => {
           cursor: isDragging ? "grabbing" : "grab",
         }}
       >
-        {label}&nbsp;({timeString})
+        {loading ? (
+          <>Loading...</>
+        ) : (
+          <>
+            {label}&nbsp;({timeString})
+          </>
+        )}
       </small>
     </div>
   );
