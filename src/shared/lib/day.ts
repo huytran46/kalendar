@@ -52,8 +52,6 @@ function parseHourMinuteDateToUnix(
     .set("minute", _minute)
     .set("date", _date);
 
-  console.log("_dayJS:", _dayJS.format("DD/MM/YYYY HH:mm"));
-
   return _dayJS.unix();
 }
 
