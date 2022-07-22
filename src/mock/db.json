@@ -4,14 +4,14 @@
       "id": 1,
       "first_name": "Quoc",
       "last_name": "Hyu",
-      "email": "quoc_hyu@developer.skedulo.com",
+      "email": "quoc_hyu@developer.simplaq.com",
       "available_events": 2
     },
     {
       "id": 2,
       "first_name": "Tran",
       "last_name": "Huy",
-      "email": "huy_tran@developer.skedulo.com",
+      "email": "huy_tran@developer.simplaq.com",
       "available_events": 0
     }
   ],

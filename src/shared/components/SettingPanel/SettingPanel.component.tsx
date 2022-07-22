@@ -6,13 +6,8 @@ import { IStaff } from "../../model/Staff";
 import "./SettingPanel.scss";
 
 const SettingPanel: React.FC = () => {
-  const {
-    setSetting,
-    minutesPerRow,
-    viewingStaffId,
-    rowHeightInPx,
-    daysToShow,
-  } = useGlobalSetting();
+  const { setSetting, minutesPerRow, viewingStaffId, rowHeightInPx } =
+    useGlobalSetting();
 
   const getStaffsApiHook = useAxios<undefined, IStaff[]>("/staffs", "GET");
 
@@ -36,8 +31,8 @@ const SettingPanel: React.FC = () => {
 
   // set default staff
   useEffect(() => {
-    if (!staffOptions.length || viewingStaffId) return;
-    setSetting((prev) => ({
+    if (!staffOptions.length || viewingStaffId || !setSetting) return;
+    setSetting?.((prev) => ({
       ...prev,
       viewingStaffId: staffOptions[0].value.id,
     }));
@@ -45,6 +40,9 @@ const SettingPanel: React.FC = () => {
 
   return (
     <div className="kalendar-setting-panel">
+      <h3>
+        <b style={{ textTransform: "uppercase" }}>Simplaq Website 2</b>
+      </h3>
       <h4>📡&nbsp;Control panel</h4>
       <span>|</span>
 
@@ -56,9 +54,9 @@ const SettingPanel: React.FC = () => {
         value={currentSelectedStaff}
         isLoading={getStaffsApiHook.loading}
         onChange={(newSelectedStaff) =>
-          setSetting((prev) => ({
+          setSetting?.((prev) => ({
             ...prev,
-            viewingStaffId: newSelectedStaff.value.id,
+            viewingStaffId: newSelectedStaff?.value?.id,
           }))
         }
         styles={{
@@ -82,8 +80,7 @@ const SettingPanel: React.FC = () => {
         onChange={(e) => {
           const _value =
             parseInt(e.target.value, 10) < 1 ? 1 : parseInt(e.target.value, 10);
-
-          setSetting((prev) => ({ ...prev, minutesPerRow: _value }));
+          setSetting?.((prev) => ({ ...prev, minutesPerRow: _value }));
         }}
       />
       <small>minute(s)</small>
@@ -103,7 +100,7 @@ const SettingPanel: React.FC = () => {
               ? 16
               : parseInt(e.target.value, 10);
 
-          setSetting((prev) => ({
+          setSetting?.((prev) => ({
             ...prev,
             rowHeightInPx: _value,
           }));

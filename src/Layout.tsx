@@ -1,15 +1,11 @@
 import React from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
-import {
-  SettingContextProvider,
-  useGlobalSetting,
-} from "./context/Setting.context";
+import { SettingContextProvider } from "./context/Setting.context";
 import "./App.scss";
 import SettingPanel from "./shared/components/SettingPanel";
 
 const Layout: React.FC = () => {
   const location = useLocation();
-  const { setSetting } = useGlobalSetting();
 
   return (
     <SettingContextProvider>

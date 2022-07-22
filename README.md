@@ -1,4 +1,4 @@
-# Kalendar - Skedulo functional test
+# Kalendar - Simplag functional test
 
 ## Features
 1. Display events on calendar precisely (at minute level).

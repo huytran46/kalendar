@@ -108,32 +108,24 @@ const KalendarEvent: React.FC<IEventBlockProps> = observer((props) => {
     // change event's position
     const de = dndManager.draggableEvent;
 
-    // console.log("de.toX:", de.toX);
+    if (!de || de?.toX == null || de?.toY == null) return;
 
-    // console.log("de.toY:", de.toY);
+    const endRow = de?.toX + _rowOffset;
 
-    const endRow = de.toX + _rowOffset;
+    const startUnix = CalendarService.revertCoordinatesToUnix(de?.toX, de.toY);
 
-    // console.log("_rowOffset:", _rowOffset);
+    const endUnix = CalendarService.revertCoordinatesToUnix(endRow, de?.toY);
 
-    // console.log("endRow:", endRow);
-
-    const startUnix = CalendarService.revertCoordinatesToUnix(de.toX, de.toY);
-
-    // console.log("startUnix:", startUnix);
-
-    const endUnix = CalendarService.revertCoordinatesToUnix(endRow, de.toY);
-
-    // console.log("endUnix:", endUnix);
-
-    patchEventInfo(startUnix, endUnix, () => {
-      setGridAreaString(parseGridAreaString(de.toX, de.toY, endRow, de.toY));
-    });
+    if (de?.toX != null && de?.toY != null) {
+      patchEventInfo(startUnix, endUnix, () => {
+        setGridAreaString(
+          parseGridAreaString(de.toX ?? 0, de.toY ?? 0, endRow, de.toY ?? 0)
+        );
+      });
+    }
 
     dndManager?.resetState();
   }, [dndManager?.draggableEvent, _rowOffset, props.eventId]);
-
-  // console.log("test:", CalendarService.revertCoordinatesToUnix(123, 2));
 
   async function patchEventInfo(
     startUnixTimeStamp: number,
