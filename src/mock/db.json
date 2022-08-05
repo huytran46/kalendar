@@ -4,15 +4,15 @@
       "id": 1,
       "first_name": "Quoc",
       "last_name": "Hyu",
-      "email": "quoc_hyu@developer.simplaq.com",
+      "email": "quoc_hyu@developer.io",
       "available_events": 2
     },
     {
       "id": 2,
       "first_name": "Tran",
       "last_name": "Huy",
-      "email": "huy_tran@developer.simplaq.com",
-      "available_events": 0
+      "email": "huy_tran@developer.io",
+      "available_events": 2
     }
   ],
   "events": [
@@ -31,6 +31,22 @@
       "staff_id": 1,
       "start_at": 1654315229,
       "end_at": 1654317029
+    },
+    {
+      "id": 1659694441719,
+      "name": "All-hands meeting",
+      "hex_color": "#ff2600",
+      "staff_id": 2,
+      "start_at": 1659694020,
+      "end_at": 1659702600
+    },
+    {
+      "id": 1659694478112,
+      "name": "All-hands meeting",
+      "hex_color": "#000000",
+      "staff_id": 2,
+      "start_at": 1659671977,
+      "end_at": 1659675577
     }
   ]
 }

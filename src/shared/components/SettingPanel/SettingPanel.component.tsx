@@ -41,7 +41,7 @@ const SettingPanel: React.FC = () => {
   return (
     <div className="kalendar-setting-panel">
       <h3>
-        <b style={{ textTransform: "uppercase" }}>Simplaq Website 2</b>
+        <b style={{ textTransform: "uppercase" }}>Huy's Website</b>
       </h3>
       <h4>📡&nbsp;Control panel</h4>
       <span>|</span>
